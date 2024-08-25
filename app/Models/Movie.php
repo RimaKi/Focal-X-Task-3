@@ -8,15 +8,26 @@ use Illuminate\Database\Eloquent\Model;
 class Movie extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'title',
         'description',
         'director',
         'genre',
         'release_year'
     ];
+    protected $appends = [
+        'AverageRate'
+    ];
 
-    public function rates(){
+    public function rates()
+    {
         return $this->hasMany(Rating::class);
+    }
+
+    public function getAverageRateAttribute()
+    {
+        $rates = $this->rates()->average('rating');
+        return $rates;
     }
 }

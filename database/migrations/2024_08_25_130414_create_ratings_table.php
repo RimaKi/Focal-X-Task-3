@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('movie_id');
             $table->tinyInteger('rating');
-            $table->string('review');
+            $table->string('review')->nullable();
 //            $table->foreign('user_id')->references('id')->on('users');
 //            $table->foreign('movie_id')->references('id')->on('movies');
             $table->timestamps();
